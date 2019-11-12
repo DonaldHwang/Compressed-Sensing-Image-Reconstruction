@@ -1,34 +1,34 @@
 function whole
 
-pa = genpath(pwd);% »ñµÃÎÄ¼ş¼ĞdataÏÂËùÓĞ×ÓÎÄ¼şµÄÂ·¾¶£¬ÕâĞ©Â·¾¶´æÔÚ×Ö·û´®pÖĞ£¬ÒÔ';'·Ö¸î
-length_p = size(pa,2);%×Ö·û´®pµÄ³¤¶È
-path = {};%½¨Á¢Ò»¸öµ¥ÔªÊı×é£¬Êı×éµÄÃ¿¸öµ¥ÔªÖĞ°üº¬Ò»¸öÄ¿Â¼
+pa = genpath(pwd);% è·å¾—æ–‡ä»¶å¤¹dataä¸‹æ‰€æœ‰å­æ–‡ä»¶çš„è·¯å¾„ï¼Œè¿™äº›è·¯å¾„å­˜åœ¨å­—ç¬¦ä¸²pä¸­ï¼Œä»¥';'åˆ†å‰²
+length_p = size(pa,2);%å­—ç¬¦ä¸²pçš„é•¿åº¦
+path = {};%å»ºç«‹ä¸€ä¸ªå•å…ƒæ•°ç»„ï¼Œæ•°ç»„çš„æ¯ä¸ªå•å…ƒä¸­åŒ…å«ä¸€ä¸ªç›®å½•
 temp = [];
-for i = 1:length_p %Ñ°ÕÒ·Ö¸î·û';'£¬Ò»µ©ÕÒµ½£¬Ôò½«Â·¾¶tempĞ´ÈëpathÊı×éÖĞ
+for i = 1:length_p %å¯»æ‰¾åˆ†å‰²ç¬¦';'ï¼Œä¸€æ—¦æ‰¾åˆ°ï¼Œåˆ™å°†è·¯å¾„tempå†™å…¥pathæ•°ç»„ä¸­
     if pa(i) ~= ';'
         temp = [temp pa(i)];
     else 
-        temp = [temp '\']; %ÔÚÂ·¾¶µÄ×îºó¼ÓÈë '\'
+        temp = [temp '\']; %åœ¨è·¯å¾„çš„æœ€ååŠ å…¥ '\'
         path = [path ; temp];
         temp = [];
     end
 end  
 clear pa length_p temp;
-%ÖÁ´Ë»ñµÃdataÎÄ¼ş¼Ğ¼°ÆäËùÓĞ×ÓÎÄ¼ş¼Ğ£¨¼°×ÓÎÄ¼ş¼ĞµÄ×ÓÎÄ¼ş¼Ğ£©µÄÂ·¾¶£¬´æÓÚÊı×épathÖĞ¡£
-%ÏÂÃæÊÇÖğÒ»ÎÄ¼ş¼ĞÖĞ¶ÁÈ¡Í¼Ïñ
-file_num = size(path,1);% ×ÓÎÄ¼ş¼ĞµÄ¸öÊı
+%è‡³æ­¤è·å¾—dataæ–‡ä»¶å¤¹åŠå…¶æ‰€æœ‰å­æ–‡ä»¶å¤¹ï¼ˆåŠå­æ–‡ä»¶å¤¹çš„å­æ–‡ä»¶å¤¹ï¼‰çš„è·¯å¾„ï¼Œå­˜äºæ•°ç»„pathä¸­ã€‚
+%ä¸‹é¢æ˜¯é€ä¸€æ–‡ä»¶å¤¹ä¸­è¯»å–å›¾åƒ
+file_num = size(path,1);% å­æ–‡ä»¶å¤¹çš„ä¸ªæ•°
 for i = 1:file_num
-    file_path =  path{i}; % Í¼ÏñÎÄ¼ş¼ĞÂ·¾¶
+    file_path =  path{i}; % å›¾åƒæ–‡ä»¶å¤¹è·¯å¾„
     dest_path = strcat(path{i});
     img_path_list = dir(strcat(file_path,'*.jpg'));
-    img_num = length(img_path_list); %¸ÃÎÄ¼ş¼ĞÖĞÍ¼ÏñÊıÁ¿
+    img_num = length(img_path_list); %è¯¥æ–‡ä»¶å¤¹ä¸­å›¾åƒæ•°é‡
     if img_num > 0
         for j = 1:img_num
-            image_name = img_path_list(j).name;% Í¼ÏñÃû
+            image_name = img_path_list(j).name;% å›¾åƒå
             rec_image_name = strcat(erase(image_name,".jpg"),"_rec.png");
             image =  imread(strcat(file_path,image_name));
-            fprintf('%d %d %s\n',i,j,strcat(file_path,image_name));% ÏÔÊ¾ÕıÔÚ´¦ÀíµÄÂ·¾¶ºÍÍ¼ÏñÃû
-            result = Copy_of_demo_barbara(image);
+            fprintf('%d %d %s\n',i,j,strcat(file_path,image_name));% æ˜¾ç¤ºæ­£åœ¨å¤„ç†çš„è·¯å¾„å’Œå›¾åƒå
+            result = Cifar-demo(image);
             imwrite(result,strcat(file_path,rec_image_name));
         end
     end
