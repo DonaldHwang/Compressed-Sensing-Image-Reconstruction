@@ -1,4 +1,4 @@
-function estIm=Copy_of_demo_barbara(bbr)
+function estIm=Cifar-demo(bbr)
 %
 % This demo shows how TVAL3 handles a complicated image and how to trigger
 % the continuation scheme in order to speed up the convergence.
